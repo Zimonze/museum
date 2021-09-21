@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Museum</title>
+    <link href="slider.css" rel="stylesheet">
+		<style>
+      html, body {
+        margin: 0;
+        height: 100%;
+        color: white;
+        background-color: black;
+      }
+      #canvas {
+        width: 100%;
+        height: 50%;
+        display: block;
+      }
+    </style>
+	</head>
+	<body onload="start('A', true)">
+    <canvas id="canvas"></canvas>
+		<script src="https://threejs.org/build/three.js"></script>
+		<script src="animateLetter.js"></script>
+    <script>function a(){spin = document.getElementById("animate").checked}</script>
+    <p id="a">This is the letter A.</p>
+    <!-- Rounded switch (https://www.w3schools.com/howto/howto_css_switch.asp) -->
+    <label class="switch" onclick="a()">
+      <input id="animate" type="checkbox" checked="true">
+      <span class="slider round"></span>
+    </label>
+    start/stop spinning animation
+	</body>
+</html>
