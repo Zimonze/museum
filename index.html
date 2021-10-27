@@ -17,15 +17,20 @@
         display: block;
       }
     </style>
+
 	</head>
-	<body onload="start('A', true)">
-    <canvas id="canvas"></canvas>
-		<script src="https://threejs.org/build/three.js"></script>
-		<script src="animateLetter.js"></script>
-    <script>function a(){spin = document.getElementById("animate").checked}</script>
-    <p id="a">This is the letter A.</p>
+
+	<body>
+
+    <script src="https://threejs.org/build/three.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="animate.js"></script>
+
+    <p>Scissors!</p>
+
     <!-- Rounded switch (https://www.w3schools.com/howto/howto_css_switch.asp) -->
-    <label class="switch" onclick="a()">
+    <script>function toggleSpin(){spin = document.getElementById("animate").checked}</script>
+    <label class="switch" onclick="toggleSpin()">
       <input id="animate" type="checkbox" checked="true">
       <span class="slider round"></span>
     </label>
