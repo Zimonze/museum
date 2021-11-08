@@ -16,22 +16,31 @@ scene.add( cube );*/
 
 scene.add(new THREE.AmbientLight( 0xffffff ))
 
-camera.position.z = 20
 camera.lookAt(0,0,0)
+var cameraDistance = 25
+camera.position.z = cameraDistance
 
+var angle = 0
 var animate = function () {
 	requestAnimationFrame( animate );
 
-	model.rotation.x += 0.01;
+  if(document.getElementById("animate").checked){
+    angle += 0.02
+    camera.position.z = cameraDistance * Math.cos(angle)
+    camera.position.x = cameraDistance * Math.sin(angle)
+    camera.lookAt(0,0,0)   
 
-	renderer.render( scene, camera );
+	  renderer.render( scene, camera );
+  }
+
+  resizeRendererToDisplaySize(renderer)
 };
 
 const gltfLoader = new THREE.GLTFLoader();
 gltfLoader.load('models/scissors.gltf', 
 function (gltf) {
 
-  gltf.scene.scale.set(50,50,50)
+  gltf.scene.scale.set(100,100,100)
 
   model = gltf.scene
   scene.add(model)
@@ -43,8 +52,6 @@ function (gltf) {
   model.position.x += ( model.position.x - center.x );
   model.position.y += ( model.position.y - center.y );
   model.position.z += ( model.position.z - center.z );
-
-  camera.lookAt(gltf.scene.position)
 
   console.log("hi")
   animate();
