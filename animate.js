@@ -1,12 +1,13 @@
 var scene = new THREE.Scene();
-var canvasWidth = window.innerWidth
-var canvasHeight = window.innerHeight/2
+var canvasContainer = document.getElementById("canvasContainer");
+var canvasWidth = canvasContainer.clientWidth
+var canvasHeight = canvasContainer.clientHeight
 var camera = new THREE.PerspectiveCamera( 45, canvasWidth/canvasHeight);
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( canvasWidth, canvasHeight );
 renderer.outputEncoding = THREE.sRGBEncoding;
-document.body.appendChild( renderer.domElement );
+canvasContainer.appendChild( renderer.domElement );
 
 //debug cube
 /*var geometry = new THREE.BoxGeometry( 1, 1, 1 );
@@ -22,6 +23,13 @@ camera.position.z = cameraDistance
 
 var angle = 0
 var animate = function () {
+
+  const canvas = renderer.domElement;
+  camera.aspect = canvas.clientWidth / canvas.clientHeight;
+  camera.updateProjectionMatrix();
+
+  resizeRendererToDisplaySize(renderer);
+
 	requestAnimationFrame( animate );
 
   if(document.getElementById("animate").checked){
@@ -33,7 +41,6 @@ var animate = function () {
 	  renderer.render( scene, camera );
   }
 
-  resizeRendererToDisplaySize(renderer)
 };
 
 const gltfLoader = new THREE.GLTFLoader();
@@ -70,15 +77,16 @@ function ( error ) {
 
 })
 
-//dont mess up when resizing window
+
 //https://threejsfundamentals.org/threejs/lessons/threejs-responsive.html
 function resizeRendererToDisplaySize(renderer) {
   const canvas = renderer.domElement;
-  const width = canvas.clientWidth;
-  const height = canvas.clientHeight;
+  const width = canvasContainer.clientWidth;
+  const height = canvasContainer.clientHeight;
   const needResize = canvas.width !== width || canvas.height !== height;
   if (needResize) {
-    renderer.setSize(width, height, false);
+    console.log("ee")
+    renderer.setSize(width, height);
   }
   return needResize;
 }

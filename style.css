@@ -1,5 +1,14 @@
 body {
+  height: 100%;
+  color: white;
+  background-color: hotpink;
   font-family: sans-serif;
+}
+
+#canvasContainer {
+  width: 100%;
+  height: 50vh;
+  display: block;
 }
 
 p {
